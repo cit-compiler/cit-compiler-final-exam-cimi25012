@@ -1,1 +1,60 @@
 // このファイルに指示されたBNFを記述する
+// Lox (Crafting Interpreters) up to Ch.8.4
+
+program ::= declaration
+         | declaration program
+
+declaration ::= varDecl
+             | statement
+
+varDecl ::= "var" IDENTIFIER ";"
+          | "var" IDENTIFIER "=" expression ";"
+
+statement ::= exprStmt
+            | printStmt
+            | block
+
+exprStmt ::= expression ";"
+
+printStmt ::= "print" expression ";"
+
+block ::= "{" "}"
+        | "{" declarationList "}"
+
+declarationList ::= declaration
+                  | declaration declarationList
+
+expression ::= assignment
+
+assignment ::= IDENTIFIER "=" assignment
+             | equality
+
+equality ::= comparison
+           | equality "!=" comparison
+           | equality "==" comparison
+
+comparison ::= term
+             | comparison ">" term
+             | comparison ">=" term
+             | comparison "<" term
+             | comparison "<=" term
+
+term ::= factor
+       | term "-" factor
+       | term "+" factor
+
+factor ::= unary
+         | factor "/" unary
+         | factor "*" unary
+
+unary ::= primary
+        | "!" unary
+        | "-" unary
+
+primary ::= NUMBER
+          | STRING
+          | "true"
+          | "false"
+          | "nil"
+          | IDENTIFIER
+          | "(" expression ")"
