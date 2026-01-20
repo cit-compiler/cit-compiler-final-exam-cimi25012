@@ -1,6 +1,4 @@
 // このファイルに指示されたBNFを記述する
-// Lox (Crafting Interpreters) up to Ch.8.4
-
 program ::= declaration
          | declaration program
 
